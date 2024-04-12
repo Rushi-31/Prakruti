@@ -1,5 +1,6 @@
 package com.rushikesh.prakruti
 
+
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
@@ -20,7 +21,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -34,9 +34,11 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.rushikesh.prakruti.api.DataModel
 import com.rushikesh.prakruti.api.DiseaseResponse
 import com.rushikesh.prakruti.api.RetrofitInstance
+import com.rushikesh.prakruti.nav.NavigationScreens
 import com.rushikesh.prakruti.ui.theme.PrakrutiTheme
 import com.rushikesh.prakruti.ui.theme.greenColor
 import retrofit2.Call
@@ -54,7 +56,8 @@ class MainActivity : ComponentActivity() {
                     // on below line we are specifying modifier and color for our app
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    postDataui()
+                    val navController = rememberNavController()
+                    NavigationScreens(navController = navController)
                 }
             }
         }
@@ -85,52 +88,43 @@ fun postDataui() {
         )
     }
 
-    // on below line we are creating a column.
+
     Column(
-        // on below line we are adding a modifier to it
-        // and setting max size, max height and max width
+
         modifier = Modifier
             .fillMaxSize()
             .fillMaxHeight()
             .fillMaxWidth(),
-        // on below line we are adding vertical
-        // arrangement and horizontal alignment.
+
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
-            // on below line we are specifying text as
-            // Session Management in Android.
+
             text = "Prakruti",
-            // on below line we are specifying text color.
             color = greenColor,
             fontSize = 20.sp,
-            // on below line we are specifying font family
             fontFamily = FontFamily.Default,
-            // on below line we are adding font weight
-            // and alignment for our text
+
             fontWeight = FontWeight.Bold, textAlign = TextAlign.Center
         )
         //on below line we are adding spacer
         Spacer(modifier = Modifier.height(5.dp))
-        // on below line we are creating a text field for our email.
+
         TextField(
-            // on below line we are specifying value for our email text field.
+
             value = symptoms.value,
-            // on below line we are adding on value change for text field.
+
             onValueChange = {
                 symptoms.value = it
             },
-            // on below line we are adding place holder as text as "Enter your email"
             placeholder = { Text(text = "Enter Your Symptoms Seperated by ',' ") },
-            // on below line we are adding modifier to it
-            // and adding padding to it and filling max width
+
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
-            // on below line we are adding text style
-            // specifying color and font size to it.
+
             textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
             // on below line we are adding single line to it.
             singleLine = true,
@@ -150,10 +144,8 @@ fun postDataui() {
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
-            // on below line we are adding text style
-            // specifying color and font size to it.
+
             textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
-            // on below line we ar adding single line to it.
             singleLine = true,
         )
         // on below line we are adding spacer
@@ -162,16 +154,16 @@ fun postDataui() {
         Button(
             onClick = {
                 // on below line we are calling make payment method to update data.
-                postData(
-                    context = context,
-                    symptoms = symptoms,
-                    days = days,
-                    predicted_disease = predicted_disease,
-                    discreption = discreption,
-                    precautions = precautions
-
-
-                )
+//                postData(
+//                    context = context,
+//                    symptoms = symptoms,
+//                    days = days,
+//                    predicted_disease = predicted_disease,
+//                    discreption = discreption,
+//                    precautions = precautions
+//
+//
+//                )
             },
             // on below line we are adding modifier to our button.
             modifier = Modifier
@@ -196,20 +188,15 @@ fun postDataui() {
     }
 }
 
-private fun postData(
-
+fun postData(
     context: Context,
-    symptoms: MutableState<TextFieldValue>,
-    days: MutableState<TextFieldValue>,
-    predicted_disease: MutableState<String>,
-    discreption: MutableState<String>,
-    precautions: MutableList<String>
-
+    symptoms: MutableList<String>,
+    days: Int,
+    onPredictionReceived: (String, String, List<String>) -> Unit,
+    onFailure: (String) -> Unit
 ) {
-    var symptomsList = symptoms.value.text.split(",")
-    val intDays = days.value.text.toIntOrNull() ?: 0
-
-    val dataModel = intDays.let { DataModel(it, symptomsList) }
+    val intDays = days
+    val dataModel = DataModel(intDays, symptoms = symptoms)
 
     RetrofitInstance.apiInterface.postData(dataModel)?.enqueue(object : Callback<DiseaseResponse?> {
         override fun onResponse(
@@ -217,23 +204,26 @@ private fun postData(
             response: Response<DiseaseResponse?>
         ) {
             Toast.makeText(context, "Data posted to API", Toast.LENGTH_SHORT).show()
-            val diseaseResonse: DiseaseResponse? = response.body()
+            val diseaseResponse: DiseaseResponse? = response.body()
 
-            if (diseaseResonse != null) {
-                predicted_disease.value = diseaseResonse.predicted_disease
-                discreption.value = diseaseResonse.description
-                precautions.addAll(diseaseResonse.precautions)
+            if (diseaseResponse != null) {
+                onPredictionReceived(
+                    diseaseResponse.predicted_disease,
+                    diseaseResponse.description,
+                    diseaseResponse.precautions
+                )
+            } else {
+                onFailure("Empty response body")
             }
-
         }
 
         override fun onFailure(call: Call<DiseaseResponse?>, t: Throwable) {
-            predicted_disease.value = "Error found is : " + t.message
-            discreption.value = "Error found is : " + t.message
-
+            onFailure("Error found: ${t.message}")
         }
     })
 }
+
+
 
 
 

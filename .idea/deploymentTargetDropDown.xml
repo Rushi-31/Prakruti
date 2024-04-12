@@ -5,8 +5,24 @@
       <entry key="MainActivity">
         <State />
       </entry>
-      <entry key="app">
+      <entry key="UserDataPreview">
         <State />
+      </entry>
+      <entry key="app">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\rushi\.android\avd\Pixel_8_API_UpsideDownCakePrivacySandbox.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-11T09:14:20.555004900Z" />
+        </State>
       </entry>
     </value>
   </component>
