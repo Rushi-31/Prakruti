@@ -31,7 +31,7 @@ To run the Prakruti app on your local machine, follow these steps:
 1. **Clone the repository:** 
 
 ```bash
-git clone https://github.com/your-username/prakruti.git
+https://github.com/Rushi-31/Prakruti.git
 ```
 
 2. **Open the project in Android Studio.**
