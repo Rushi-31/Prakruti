@@ -59,7 +59,7 @@ fun UserData(onNavigateToQna: (String) -> Unit) {
             painter = painterResource(id = R.drawable.doctor),
             contentDescription = "doctor logo",
             Modifier
-                .height(350.dp)
+                .height(320.dp)
                 .width(250.dp)
                 .padding(top = 40.dp)
         )
