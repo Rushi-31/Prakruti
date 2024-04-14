@@ -198,7 +198,8 @@ fun QnA(param: String, navController: NavHostController) {
         Text(
             text = "Hello $name!",
             fontSize = 30.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(20.dp)
         )
         Spacer(modifier = Modifier.height(30.dp))
         Question(randomSymptoms[currentQuestionIndex], answer) { symptom, isYes ->

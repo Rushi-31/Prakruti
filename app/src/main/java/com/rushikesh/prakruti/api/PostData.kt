@@ -1,7 +1,6 @@
 package com.rushikesh.prakruti.api
 
 import android.content.Context
-import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +21,7 @@ fun postData(
             call: Call<DiseaseResponse?>,
             response: Response<DiseaseResponse?>
         ) {
-            Toast.makeText(context, "Data posted to API", Toast.LENGTH_SHORT).show()
+
             val diseaseResponse: DiseaseResponse? = response.body()
 
             if (diseaseResponse != null) {

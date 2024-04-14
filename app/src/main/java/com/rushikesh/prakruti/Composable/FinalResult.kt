@@ -21,7 +21,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -86,13 +85,12 @@ fun FinalResult(
         modifier = Modifier
             .fillMaxSize()
             .padding(top = 60.dp)
-
     ) {
         Column(
             modifier = Modifier
                 .padding(16.dp)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.Start,
+                .fillMaxWidth()
+
         ) {
             Row(
                 Modifier
@@ -108,7 +106,10 @@ fun FinalResult(
             }
             Spacer(modifier = Modifier.height(20.dp))
             Text(text = "Alarming Symptoms ", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-            LazyColumn {
+
+            LazyColumn(
+                modifier = Modifier.weight(1f)
+            ) {
                 items(symptomList.size) {
                     Text(
                         text = "• ${symptomList.toMutableList()[it].replace("_", " ")}",
@@ -116,7 +117,8 @@ fun FinalResult(
                         fontWeight = FontWeight.Normal
                     )
                 }
-            }
+                }
+
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = "Result",
@@ -153,7 +155,9 @@ fun FinalResult(
                 fontWeight = FontWeight.Medium,
                 fontSize = 18.sp
             )
-            LazyColumn {
+            LazyColumn(
+                modifier = Modifier.weight(1f)
+            ) {
                 items(precautions.size) { index ->
                     if (precautions[index].isNotBlank())
                         Text(
@@ -164,8 +168,8 @@ fun FinalResult(
                 }
             }
         }
+        }
     }
-}
 
 
 @Preview(showSystemUi = true)
