@@ -35,7 +35,8 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     // on below line we are specifying modifier and color for our app
                     modifier = Modifier.fillMaxSize(),
-                ) {
+
+                    ) {
                     Scaffold(topBar = {
 
                         TopAppBar(

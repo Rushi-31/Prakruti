@@ -1,4 +1,3 @@
-package com.rushikesh.prakruti.Composable
 
 import android.annotation.SuppressLint
 import android.widget.Toast
@@ -15,12 +14,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -51,11 +52,13 @@ fun FinalResult(
     var precautions by remember { mutableStateOf(emptyList<String>()) }
     var symptomList = symptoms.toSet()
     // Call the postData function
+    var isLoading by remember { mutableStateOf(true) }
     postData(context, symptomList.toMutableList(), days,
         onPredictionReceived = { pred, desc, precaut ->
             prediction = pred
             description = desc
             precautions = precaut
+            isLoading = false
         },
         onFailure = { message ->
             // Handle failure, such as displaying an error message
@@ -85,7 +88,15 @@ fun FinalResult(
         modifier = Modifier
             .fillMaxSize()
             .padding(top = 60.dp)
-    ) {
+
+    )
+
+    {
+        if (isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center)
+            )
+        } else {
         Column(
             modifier = Modifier
                 .padding(16.dp)
@@ -117,7 +128,7 @@ fun FinalResult(
                         fontWeight = FontWeight.Normal
                     )
                 }
-                }
+            }
 
             Spacer(modifier = Modifier.height(10.dp))
             Text(
@@ -170,6 +181,7 @@ fun FinalResult(
         }
         }
     }
+}
 
 
 @Preview(showSystemUi = true)
