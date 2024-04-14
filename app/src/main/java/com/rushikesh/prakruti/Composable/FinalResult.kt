@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -68,7 +70,7 @@ fun FinalResult(
     val resultText = when {
         days < 4 -> "This Might not be bad but you should take precautions."
         days in 4..7 -> "You might need a doctor consultation."
-        else -> "Call an ambulance!"
+        else -> "You have serious issues urgently consult with doctor."
     }
 
     val logo = when {
@@ -92,7 +94,8 @@ fun FinalResult(
         Column(
             modifier = Modifier
                 .padding(16.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState(), enabled = true),
             horizontalAlignment = Alignment.Start,
         ) {
             Row(
@@ -178,7 +181,7 @@ fun FinalResultPreview() {
 
     // Call the FinalResult composable with sample data
     FinalResult(
-        days = 5, // Sample days
+        days = 9, // Sample days
         symptoms = listOf("Symptom 1", "Symptom 2", "Symptom 3"), // Sample symptoms
         navController = navController
     )
