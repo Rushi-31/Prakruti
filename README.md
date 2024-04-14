@@ -1,7 +1,3 @@
-Certainly! Here's a comprehensive README file template for your GitHub project:
-
----
-
 # Prakruti
 
 Prakruti is a health diagnosis application built using Jetpack Compose for Android. It allows users to input their symptoms and provides a diagnosis along with recommended precautions.
@@ -27,7 +23,7 @@ Prakruti is a health diagnosis application built using Jetpack Compose for Andro
 ## Screenshots
 
 [Add screenshots of your app here]
-
+comming soon
 ## Installation
 
 To run the Prakruti app on your local machine, follow these steps:
@@ -82,11 +78,11 @@ git push origin feature-name
 
 ## License
 
-[Include license information here]
+comming soon
 
 ## Acknowledgements
 
-[Include any acknowledgements or credits here]
+comming soon
 
 ---
 
