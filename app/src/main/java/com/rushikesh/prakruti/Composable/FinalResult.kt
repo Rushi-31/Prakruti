@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,7 +35,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.rushikesh.prakruti.R
 import com.rushikesh.prakruti.api.postData
-
 import com.rushikesh.prakruti.ui.theme.greenColor
 
 @SuppressLint("SuspiciousIndentation")
@@ -94,8 +91,7 @@ fun FinalResult(
         Column(
             modifier = Modifier
                 .padding(16.dp)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState(), enabled = true),
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.Start,
         ) {
             Row(
