@@ -30,19 +30,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.rushikesh.prakruti.R
-import com.rushikesh.prakruti.nav.NavItem
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserData(navController: NavHostController) {
+fun UserData(onNavigateToQna: (String) -> Unit) {
     var name by remember { mutableStateOf("") }
     var gender by remember { mutableStateOf("") }
     var age by remember { mutableStateOf("") }
@@ -50,7 +46,7 @@ fun UserData(navController: NavHostController) {
     val context = LocalContext.current
     Column(
         modifier = Modifier
-            .padding(top = 30.dp)
+            .padding(top = 50.dp)
             .padding(horizontal = 56.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -63,6 +59,7 @@ fun UserData(navController: NavHostController) {
                 .width(250.dp)
                 .padding(40.dp)
         )
+        Spacer(modifier = Modifier.height(20.dp))
         Text(text = "Let's get started", fontSize = 20.sp)
         TextField(
             value = name,
@@ -144,6 +141,7 @@ fun UserData(navController: NavHostController) {
             value = searchText,
             onValueChange = { searchText ->
                 selectedSymptom.value = searchText
+//                if (selectedSymptom)
                 viewModel.onSearchTextChange(searchText)
                 expanded = !expanded
             },
@@ -185,23 +183,20 @@ fun UserData(navController: NavHostController) {
             value = days,
             onValueChange = { days = it },
             label = { Text(text = "From how many days") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
         Button(
             onClick = {
                 if (name.isNotBlank() && gender.isNotBlank() && age.isNotBlank() && days.isNotBlank()) {
-                    navController.navigate(
-                        "${NavItem.Qna.path}?name=$name&gender=$gender&age=$age&days=$days"
-                    ) {
-                        navController.graph.startDestinationRoute?.let { route ->
-                            popUpTo(route) { saveState = false }
-                        }
-                    }
+                    onNavigateToQna("$name,$days,$searchText")
                 } else {
                     val show =
                         Toast.makeText(context, "all should be filled", Toast.LENGTH_SHORT).show()
                 }
+
             },
             modifier = Modifier.padding(vertical = 16.dp)
         ) {
@@ -212,8 +207,3 @@ fun UserData(navController: NavHostController) {
     }
 }
 
-@Preview(showSystemUi = true)
-@Composable
-fun UserDataPreview() {
-    UserData(navController = rememberNavController())
-}

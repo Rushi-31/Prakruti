@@ -20,3 +20,10 @@ sealed class NavItem {
         )
 
 }
+
+sealed class NavigationAction {
+    object NavigateToQna : NavigationAction() // Navigate to Qna screen
+    object PopUpToRoot : NavigationAction() // Pop up to the root destination
+//   optional route to pop up to (if not specified, pops up to the nearest ancestor with this class)
+}
+
