@@ -21,7 +21,7 @@ Prakruti is a health diagnosis application built using Jetpack Compose for Andro
 - **Severity indicators:** Color-coded severity indicators provide quick insight into the diagnosis.
 
 ## Screenshots
-## Screenshots
+
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/Rushi-31/Prakruti/029136683bc002a252192b0dadee4f9cf600a4b7/images/UserInfo.png" alt="Screenshot 1" width="200" />
