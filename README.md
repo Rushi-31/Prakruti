@@ -80,13 +80,15 @@ git push origin feature-name
 ```
 
 6. **Create a pull request:** Create a pull request on GitHub.
+7. 
+# Prakruti API
+
+Prakruti API is a backend service for the Prakruti health diagnosis application. It provides endpoints for symptom prediction and diagnosis based on machine learning models.
+[https://github.com/Rushi-31/prakruti31.git](https://github.com/Rushi-31/prakruti31.git).
+
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
 
-## Acknowledgements
-
-comming soon
-
----
+Thanks for reading:)
 
