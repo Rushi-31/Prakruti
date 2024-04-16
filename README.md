@@ -22,10 +22,10 @@ Prakruti is a health diagnosis application built using Jetpack Compose for Andro
 
 ## Screenshots
 
-[https://github.com/Rushi-31/Prakruti/blob/029136683bc002a252192b0dadee4f9cf600a4b7/images/UserInfo.png]
-[https://github.com/Rushi-31/Prakruti/blob/029136683bc002a252192b0dadee4f9cf600a4b7/images/Qna.png]
-[https://github.com/Rushi-31/Prakruti/blob/029136683bc002a252192b0dadee4f9cf600a4b7/images/Dignostic.png]
-comming soon
+![Screenshot 1](https://raw.githubusercontent.com/Rushi-31/Prakruti/029136683bc002a252192b0dadee4f9cf600a4b7/images/UserInfo.png)
+![Screenshot 2](https://raw.githubusercontent.com/Rushi-31/Prakruti/029136683bc002a252192b0dadee4f9cf600a4b7/images/Qna.png)
+![Screenshot 3](https://raw.githubusercontent.com/Rushi-31/Prakruti/029136683bc002a252192b0dadee4f9cf600a4b7/images/Dignostic.png)
+
 ## Installation
 
 To run the Prakruti app on your local machine, follow these steps:
