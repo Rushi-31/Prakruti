@@ -22,7 +22,9 @@ Prakruti is a health diagnosis application built using Jetpack Compose for Andro
 
 ## Screenshots
 
-[Add screenshots of your app here]
+[https://github.com/Rushi-31/Prakruti/blob/029136683bc002a252192b0dadee4f9cf600a4b7/images/UserInfo.png]
+[https://github.com/Rushi-31/Prakruti/blob/029136683bc002a252192b0dadee4f9cf600a4b7/images/Qna.png]
+[https://github.com/Rushi-31/Prakruti/blob/029136683bc002a252192b0dadee4f9cf600a4b7/images/Dignostic.png]
 comming soon
 ## Installation
 
