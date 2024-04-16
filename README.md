@@ -82,8 +82,7 @@ git push origin feature-name
 6. **Create a pull request:** Create a pull request on GitHub.
 
 ## License
-
-comming soon
+This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
