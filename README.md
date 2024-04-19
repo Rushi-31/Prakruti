@@ -83,7 +83,7 @@ git push origin feature-name
 # Prakruti API
 
 Prakruti API is a backend service for the Prakruti health diagnosis application. It provides endpoints for symptom prediction and diagnosis based on machine learning models.
-[https://github.com/Rushi-31/prakruti31.git](https://github.com/Rushi-31/prakruti31.git).
+[https://github.com/Rushi-31/Api-for-Prakruti](https://github.com/Rushi-31/Api-for-Prakruti).
 
 
 ## License
