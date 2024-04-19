@@ -10,7 +10,6 @@ Prakruti is a health diagnosis application built using Jetpack Compose for Andro
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
-- [Acknowledgements](#acknowledgements)
 
 ## Features
 
