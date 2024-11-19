@@ -9,27 +9,34 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-
+import com.google.firebase.auth.FirebaseAuth
+import com.rushikesh.prakruti.Composable.LoginScreen
 import com.rushikesh.prakruti.Composable.UserData
+
 @Composable
-fun NavigationScreens(navController: NavHostController, modifier: Modifier) {
+fun NavigationScreens(navController: NavHostController, modifier: Modifier = Modifier) {
+    val firebaseAuth = FirebaseAuth.getInstance()
 
-    NavHost(navController, startDestination = "user_data") {
+    NavHost(navController, startDestination = "login") {
+        // Login/Signup Screen
+        composable("login") {
+            LoginScreen(
+                onNavigateToUserData = {
+                    navController.navigate("user_data")
+                },
+                auth = firebaseAuth
+            )
+        }
+
         composable("user_data") {
-
-            UserData(onNavigateToQna = {
-                navController.navigate(
-                    "qna/$it",
-
-                    )
+            UserData(onNavigateToQna = { param ->
+                navController.navigate("qna/$param")
             })
         }
-        composable(route = "qna/{my_param}",
-            arguments = listOf(
-                navArgument("my_param") {
-                    type = NavType.StringType
-                }
-            )
+
+        composable(
+            route = "qna/{my_param}",
+            arguments = listOf(navArgument("my_param") { type = NavType.StringType })
         ) {
             val param = it.arguments?.getString("my_param") ?: ""
             QnA(param = param, navController)
@@ -49,6 +56,5 @@ fun NavigationScreens(navController: NavHostController, modifier: Modifier) {
                 navBackStackEntry.arguments?.getString("symptoms")?.split(",") ?: emptyList()
             FinalResult(days = days.toInt(), symptoms = symptoms, navController)
         }
-
     }
 }
