@@ -37,7 +37,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
 
                     ) {
-                    Scaffold(topBar = {
+                    Scaffold(
+                        topBar = {
 
                         TopAppBar(
                             title = {
@@ -56,8 +57,8 @@ class MainActivity : ComponentActivity() {
                                 titleContentColor = Color.Black,
                             )
                         )
-                    }) {
-                    val navController = rememberNavController()
+                        }) {
+                        val navController = rememberNavController()
                         NavigationScreens(
                             navController = navController,
                             modifier = Modifier.padding(top = 50.dp)

@@ -1,19 +1,18 @@
+@file:Suppress("NAME_SHADOWING")
+
 package com.rushikesh.prakruti.Composable
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -48,6 +47,7 @@ fun UserData(onNavigateToQna: (String) -> Unit) {
     var age by remember { mutableStateOf("") }
     var days by remember { mutableStateOf("") }
     val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .padding(top = 50.dp)
@@ -141,12 +141,11 @@ fun UserData(onNavigateToQna: (String) -> Unit) {
         val symptoms by viewModel.symptoms.collectAsState()
         val selectedSymptom = remember { mutableStateOf("") }
         var expanded by remember { mutableStateOf(false) }
-        val isSearching by viewModel.isSearching.collectAsState()
         TextField(
             value = searchText,
             onValueChange = { searchText ->
                 selectedSymptom.value = searchText
-//                if (selectedSymptom)
+
                 viewModel.onSearchTextChange(searchText)
                 expanded = !expanded
             },
@@ -157,13 +156,8 @@ fun UserData(onNavigateToQna: (String) -> Unit) {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-        if (isSearching) {
-            Box(modifier = Modifier.fillMaxSize()) {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-        } else {
+
+
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false }
@@ -187,8 +181,6 @@ fun UserData(onNavigateToQna: (String) -> Unit) {
                 )
             }
         }
-        }
-
 
 
         TextField(
