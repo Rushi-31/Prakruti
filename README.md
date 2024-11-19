@@ -10,7 +10,6 @@ Prakruti is a health diagnosis application built using Jetpack Compose for Andro
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
-- [Acknowledgements](#acknowledgements)
 
 ## Features
 
@@ -22,8 +21,13 @@ Prakruti is a health diagnosis application built using Jetpack Compose for Andro
 
 ## Screenshots
 
-[Add screenshots of your app here]
-comming soon
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Rushi-31/Prakruti/029136683bc002a252192b0dadee4f9cf600a4b7/images/UserInfo.png" alt="Screenshot 1" width="200" />
+  <img src="https://raw.githubusercontent.com/Rushi-31/Prakruti/029136683bc002a252192b0dadee4f9cf600a4b7/images/Qna.png" alt="Screenshot 2" width="200" />
+  <img src="https://raw.githubusercontent.com/Rushi-31/Prakruti/029136683bc002a252192b0dadee4f9cf600a4b7/images/Dignostic.png" alt="Screenshot 3" width="200" />
+</div>
+
 ## Installation
 
 To run the Prakruti app on your local machine, follow these steps:
@@ -75,14 +79,15 @@ git push origin feature-name
 ```
 
 6. **Create a pull request:** Create a pull request on GitHub.
+ 
+# Prakruti API
+
+Prakruti API is a backend service for the Prakruti health diagnosis application. It provides endpoints for symptom prediction and diagnosis based on machine learning models.
+[https://github.com/Rushi-31/Api-for-Prakruti](https://github.com/Rushi-31/Api-for-Prakruti).
+
 
 ## License
+This project is licensed under the [MIT License](LICENSE).
 
-comming soon
-
-## Acknowledgements
-
-comming soon
-
----
+Thanks for reading:)
 
